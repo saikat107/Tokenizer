@@ -1,0 +1,15 @@
+public public 10 NULL	class class 10 NULL	HelloWorld HelloWorld 10 NULL	
+{ { 11 NULL	int int 11 NULL	a int_VAR 11 NULL	= = 11 NULL	NUMBER NUMBER 11 NULL	; ; 11 NULL	
+public public 15 m1	HelloWorld METHOD_NAME 15 m1	( ( 15 m1	) ) 15 m1	
+{ { 16 m1	this this 16 m1	. . 16 m1	a int_VAR 16 m1	= = 16 m1	NUMBER NUMBER 16 m1	; ; 16 m1	
+String java.lang.String_VAR 17 m1	x java.lang.String_VAR 17 m1	= = 17 m1	STRING STRING 17 m1	; ; 17 m1	
+Map Map 18 m1	< < 18 m1	? ? 18 m1	> > 18 m1	myMap Map<?>_VAR 18 m1	= = 18 m1	new new 18 m1	HashMap HashMap 18 m1	< < 18 m1	> > 18 m1	( ( 18 m1	) ) 18 m1	; ; 18 m1	
+} } 19 m1	
+public public 26 m2	static static 26 m2	void void 26 m2	main METHOD_NAME 26 m2	( ( 26 m2	String java.lang.String_VAR 26 m2	[] [] 26 m2	args java.lang.String[]_VAR 26 m2	) ) 26 m2	
+{ { 27 m2	super super 27 m2	. . 27 m2	onDestroy METHOD_NAME 27 m2	( ( 27 m2	) ) 27 m2	; ; 27 m2	
+if if 30 m2	( ( 30 m2	mBtAdapter UNIDENTIFIED_TYPE_VAR 30 m2	! ! 30 m2	= = 30 m2	null null 30 m2	) ) 30 m2	
+{ { 31 m2	mBtAdapter UNIDENTIFIED_TYPE_VAR 31 m2	. . 31 m2	cancelDiscovery METHOD_NAME 31 m2	( ( 31 m2	) ) 31 m2	; ; 31 m2	
+} } 32 m2	
+this this 35 m2	. . 35 m2	unregisterReceiver METHOD_NAME 35 m2	( ( 35 m2	mReceiver UNIDENTIFIED_TYPE_VAR 35 m2	) ) 35 m2	; ; 35 m2	
+} } 36 m2	
+} } 37 NULL	
