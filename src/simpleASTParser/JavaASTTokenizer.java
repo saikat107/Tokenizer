@@ -102,7 +102,10 @@ public class JavaASTTokenizer extends ASTVisitor{
 		String name = null;
 		if(node.getNodeType() == ASTNode.METHOD_DECLARATION){
 			MethodDeclaration mdNode = (MethodDeclaration) node;
-			String bodyString = mdNode.getBody().toString();
+			String bodyString = "";
+			if(mdNode.getBody() != null){
+				bodyString = mdNode.getBody().toString();
+			}
 			String wholeString = node.toString();
 			String methodDeclaration = wholeString.substring(0, wholeString.indexOf(bodyString));
 			//System.out.println(methodDeclaration);

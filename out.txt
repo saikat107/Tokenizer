@@ -1,15 +1,150 @@
-public public 10 NULL	class class 10 NULL	HelloWorld HelloWorld 10 NULL	
-{ { 11 NULL	int int 11 NULL	a int_VAR 11 NULL	= = 11 NULL	NUMBER NUMBER 11 NULL	; ; 11 NULL	
-public public 15 m1	HelloWorld METHOD_NAME 15 m1	( ( 15 m1	) ) 15 m1	
-{ { 16 m1	this this 16 m1	. . 16 m1	a int_VAR 16 m1	= = 16 m1	NUMBER NUMBER 16 m1	; ; 16 m1	
-String java.lang.String_VAR 17 m1	x java.lang.String_VAR 17 m1	= = 17 m1	STRING STRING 17 m1	; ; 17 m1	
-Map Map 18 m1	< < 18 m1	? ? 18 m1	> > 18 m1	myMap Map<?>_VAR 18 m1	= = 18 m1	new new 18 m1	HashMap HashMap 18 m1	< < 18 m1	> > 18 m1	( ( 18 m1	) ) 18 m1	; ; 18 m1	
-} } 19 m1	
-public public 26 m2	static static 26 m2	void void 26 m2	main METHOD_NAME 26 m2	( ( 26 m2	String java.lang.String_VAR 26 m2	[] [] 26 m2	args java.lang.String[]_VAR 26 m2	) ) 26 m2	
-{ { 27 m2	super super 27 m2	. . 27 m2	onDestroy METHOD_NAME 27 m2	( ( 27 m2	) ) 27 m2	; ; 27 m2	
-if if 30 m2	( ( 30 m2	mBtAdapter UNIDENTIFIED_TYPE_VAR 30 m2	! ! 30 m2	= = 30 m2	null null 30 m2	) ) 30 m2	
-{ { 31 m2	mBtAdapter UNIDENTIFIED_TYPE_VAR 31 m2	. . 31 m2	cancelDiscovery METHOD_NAME 31 m2	( ( 31 m2	) ) 31 m2	; ; 31 m2	
-} } 32 m2	
-this this 35 m2	. . 35 m2	unregisterReceiver METHOD_NAME 35 m2	( ( 35 m2	mReceiver UNIDENTIFIED_TYPE_VAR 35 m2	) ) 35 m2	; ; 35 m2	
-} } 36 m2	
-} } 37 NULL	
+package package 1 NULL	com UNIDENTIFIED_TYPE_VAR 1 NULL	. . 1 NULL	stevenschoen UNIDENTIFIED_TYPE_VAR 1 NULL	. . 1 NULL	putionew UNIDENTIFIED_TYPE_VAR 1 NULL	; ; 1 NULL	
+import import 19 NULL	android android 19 NULL	. . 19 NULL	content android_VAR 19 NULL	. . 19 NULL	Context android_VAR 19 NULL	; ; 19 NULL	
+import import 20 NULL	android android 20 NULL	. . 20 NULL	text android_VAR 20 NULL	. . 20 NULL	Layout android_VAR 20 NULL	. . 20 NULL	Alignment android_VAR 20 NULL	; ; 20 NULL	
+import import 21 NULL	android android 21 NULL	. . 21 NULL	text android_VAR 21 NULL	. . 21 NULL	StaticLayout android_VAR 21 NULL	; ; 21 NULL	
+import import 22 NULL	android android 22 NULL	. . 22 NULL	text android_VAR 22 NULL	. . 22 NULL	TextPaint android_VAR 22 NULL	; ; 22 NULL	
+import import 23 NULL	android android 23 NULL	. . 23 NULL	util android_VAR 23 NULL	. . 23 NULL	AttributeSet android_VAR 23 NULL	; ; 23 NULL	
+import import 24 NULL	android android 24 NULL	. . 24 NULL	util android_VAR 24 NULL	. . 24 NULL	TypedValue android_VAR 24 NULL	; ; 24 NULL	
+import import 25 NULL	android android 25 NULL	. . 25 NULL	widget android_VAR 25 NULL	. . 25 NULL	TextView android_VAR 25 NULL	; ; 25 NULL	
+public public 35 NULL	class class 35 NULL	AutoResizeTextView com.stevenschoen.putionew.AutoResizeTextView_VAR 35 NULL	extends extends 35 NULL	TextView TextView 35 NULL	
+{ { 38 NULL	public public 38 NULL	static static 38 NULL	final final 38 NULL	float float 38 NULL	MIN_TEXT_SIZE float_VAR 38 NULL	= = 38 NULL	NUMBER NUMBER 38 NULL	; ; 38 NULL	
+private private 40 NULL	static static 40 NULL	final final 40 NULL	String java.lang.String_VAR 40 NULL	mEllipsis java.lang.String_VAR 40 NULL	= = 40 NULL	STRING STRING 40 NULL	; ; 40 NULL	
+private private 42 NULL	OnTextResizeListener com.stevenschoen.putionew.AutoResizeTextView.OnTextResizeListener_VAR 42 NULL	mTextResizeListener com.stevenschoen.putionew.AutoResizeTextView.OnTextResizeListener_VAR 42 NULL	; ; 42 NULL	
+private private 44 NULL	boolean boolean 44 NULL	mNeedsResize boolean_VAR 44 NULL	= = 44 NULL	false false 44 NULL	; ; 44 NULL	
+private private 46 NULL	float float 46 NULL	mTextSize float_VAR 46 NULL	; ; 46 NULL	
+private private 48 NULL	float float 48 NULL	mMaxTextSize float_VAR 48 NULL	= = 48 NULL	NUMBER NUMBER 48 NULL	; ; 48 NULL	
+private private 50 NULL	float float 50 NULL	mMinTextSize float_VAR 50 NULL	= = 50 NULL	MIN_TEXT_SIZE float_VAR 50 NULL	; ; 50 NULL	
+private private 52 NULL	float float 52 NULL	mSpacingMult float_VAR 52 NULL	= = 52 NULL	NUMBER NUMBER 52 NULL	NUMBER NUMBER 52 NULL	NUMBER NUMBER 52 NULL	; ; 52 NULL	
+private private 54 NULL	float float 54 NULL	mSpacingAdd float_VAR 54 NULL	= = 54 NULL	NUMBER NUMBER 54 NULL	NUMBER NUMBER 54 NULL	NUMBER NUMBER 54 NULL	; ; 54 NULL	
+private private 56 NULL	boolean boolean 56 NULL	mAddEllipsis boolean_VAR 56 NULL	= = 56 NULL	true true 56 NULL	; ; 56 NULL	
+public public 59 m1	AutoResizeTextView METHOD_NAME 59 m1	( ( 59 m1	Context Context 59 m1	context com.stevenschoen.putionew.Context_VAR 59 m1	) ) 59 m1	
+{ { 60 m1	this this 60 m1	( ( 60 m1	context com.stevenschoen.putionew.Context_VAR 60 m1	, , 60 m1	null null 60 m1	) ) 60 m1	; ; 60 m1	
+} } 61 m1	
+public public 64 m2	AutoResizeTextView METHOD_NAME 64 m2	( ( 64 m2	Context Context 64 m2	context com.stevenschoen.putionew.Context_VAR 64 m2	, , 64 m2	AttributeSet AttributeSet 64 m2	attrs com.stevenschoen.putionew.AttributeSet_VAR 64 m2	) ) 64 m2	
+{ { 65 m2	this this 65 m2	( ( 65 m2	context com.stevenschoen.putionew.Context_VAR 65 m2	, , 65 m2	attrs com.stevenschoen.putionew.AttributeSet_VAR 65 m2	, , 65 m2	NUMBER NUMBER 65 m2	) ) 65 m2	; ; 65 m2	
+} } 66 m2	
+public public 69 m3	AutoResizeTextView METHOD_NAME 69 m3	( ( 69 m3	Context Context 69 m3	context com.stevenschoen.putionew.Context_VAR 69 m3	, , 69 m3	AttributeSet AttributeSet 69 m3	attrs com.stevenschoen.putionew.AttributeSet_VAR 69 m3	, , 69 m3	int int 69 m3	defStyle int_VAR 69 m3	) ) 69 m3	
+{ { 70 m3	super super 70 m3	( ( 70 m3	context com.stevenschoen.putionew.Context_VAR 70 m3	, , 70 m3	attrs com.stevenschoen.putionew.AttributeSet_VAR 70 m3	, , 70 m3	defStyle int_VAR 70 m3	) ) 70 m3	; ; 70 m3	
+mTextSize float_VAR 71 m3	= = 71 m3	getTextSize METHOD_NAME 71 m3	( ( 71 m3	) ) 71 m3	; ; 71 m3	
+} } 72 m3	
+@ @ 77 m4	Override java.lang.Override_VAR 77 m4	
+protected protected 78 m4	void void 78 m4	onTextChanged METHOD_NAME 78 m4	( ( 78 m4	final final 78 m4	CharSequence java.lang.CharSequence_VAR 78 m4	text java.lang.CharSequence_VAR 78 m4	, , 78 m4	final final 78 m4	int int 78 m4	start int_VAR 78 m4	, , 78 m4	final final 78 m4	int int 78 m4	before int_VAR 78 m4	, , 78 m4	final final 78 m4	int int 78 m4	after int_VAR 78 m4	) ) 78 m4	
+{ { 79 m4	mNeedsResize boolean_VAR 79 m4	= = 79 m4	true true 79 m4	; ; 79 m4	
+resetTextSize METHOD_NAME 81 m4	( ( 81 m4	) ) 81 m4	; ; 81 m4	
+} } 82 m4	
+@ @ 87 m5	Override java.lang.Override_VAR 87 m5	
+protected protected 88 m5	void void 88 m5	onSizeChanged METHOD_NAME 88 m5	( ( 88 m5	int int 88 m5	w int_VAR 88 m5	, , 88 m5	int int 88 m5	h int_VAR 88 m5	, , 88 m5	int int 88 m5	oldw int_VAR 88 m5	, , 88 m5	int int 88 m5	oldh int_VAR 88 m5	) ) 88 m5	
+{ { 89 m5	if if 89 m5	( ( 89 m5	w int_VAR 89 m5	! ! 89 m5	= = 89 m5	oldw int_VAR 89 m5	| | 89 m5	| | 89 m5	h int_VAR 89 m5	! ! 89 m5	= = 89 m5	oldh int_VAR 89 m5	) ) 89 m5	
+{ { 90 m5	mNeedsResize boolean_VAR 90 m5	= = 90 m5	true true 90 m5	; ; 90 m5	
+} } 91 m5	
+} } 92 m5	
+public public 99 m6	void void 99 m6	setOnResizeListener METHOD_NAME 99 m6	( ( 99 m6	OnTextResizeListener com.stevenschoen.putionew.AutoResizeTextView.OnTextResizeListener_VAR 99 m6	listener com.stevenschoen.putionew.AutoResizeTextView.OnTextResizeListener_VAR 99 m6	) ) 99 m6	
+{ { 100 m6	mTextResizeListener com.stevenschoen.putionew.AutoResizeTextView.OnTextResizeListener_VAR 100 m6	= = 100 m6	listener com.stevenschoen.putionew.AutoResizeTextView.OnTextResizeListener_VAR 100 m6	; ; 100 m6	
+} } 101 m6	
+@ @ 106 m7	Override java.lang.Override_VAR 106 m7	
+public public 107 m7	void void 107 m7	setTextSize METHOD_NAME 107 m7	( ( 107 m7	float float 107 m7	size float_VAR 107 m7	) ) 107 m7	
+{ { 108 m7	super super 108 m7	. . 108 m7	setTextSize METHOD_NAME 108 m7	( ( 108 m7	size float_VAR 108 m7	) ) 108 m7	; ; 108 m7	
+mTextSize float_VAR 109 m7	= = 109 m7	getTextSize METHOD_NAME 109 m7	( ( 109 m7	) ) 109 m7	; ; 109 m7	
+} } 110 m7	
+@ @ 115 m8	Override java.lang.Override_VAR 115 m8	
+public public 116 m8	void void 116 m8	setTextSize METHOD_NAME 116 m8	( ( 116 m8	int int 116 m8	unit int_VAR 116 m8	, , 116 m8	float float 116 m8	size float_VAR 116 m8	) ) 116 m8	
+{ { 117 m8	super super 117 m8	. . 117 m8	setTextSize METHOD_NAME 117 m8	( ( 117 m8	unit int_VAR 117 m8	, , 117 m8	size float_VAR 117 m8	) ) 117 m8	; ; 117 m8	
+mTextSize float_VAR 118 m8	= = 118 m8	getTextSize METHOD_NAME 118 m8	( ( 118 m8	) ) 118 m8	; ; 118 m8	
+} } 119 m8	
+@ @ 124 m9	Override java.lang.Override_VAR 124 m9	
+public public 125 m9	void void 125 m9	setLineSpacing METHOD_NAME 125 m9	( ( 125 m9	float float 125 m9	add float_VAR 125 m9	, , 125 m9	float float 125 m9	mult float_VAR 125 m9	) ) 125 m9	
+{ { 126 m9	super super 126 m9	. . 126 m9	setLineSpacing METHOD_NAME 126 m9	( ( 126 m9	add float_VAR 126 m9	, , 126 m9	mult float_VAR 126 m9	) ) 126 m9	; ; 126 m9	
+mSpacingMult float_VAR 127 m9	= = 127 m9	mult float_VAR 127 m9	; ; 127 m9	
+mSpacingAdd float_VAR 128 m9	= = 128 m9	add float_VAR 128 m9	; ; 128 m9	
+} } 129 m9	
+public public 136 m10	float float 136 m10	getMaxTextSize METHOD_NAME 136 m10	( ( 136 m10	) ) 136 m10	
+{ { 137 m10	return return 137 m10	mMaxTextSize float_VAR 137 m10	; ; 137 m10	
+} } 138 m10	
+public public 145 m11	void void 145 m11	setMaxTextSize METHOD_NAME 145 m11	( ( 145 m11	float float 145 m11	maxTextSize float_VAR 145 m11	) ) 145 m11	
+{ { 146 m11	mMaxTextSize float_VAR 146 m11	= = 146 m11	maxTextSize float_VAR 146 m11	; ; 146 m11	
+requestLayout METHOD_NAME 147 m11	( ( 147 m11	) ) 147 m11	; ; 147 m11	
+invalidate METHOD_NAME 148 m11	( ( 148 m11	) ) 148 m11	; ; 148 m11	
+} } 149 m11	
+public public 156 m12	float float 156 m12	getMinTextSize METHOD_NAME 156 m12	( ( 156 m12	) ) 156 m12	
+{ { 157 m12	return return 157 m12	mMinTextSize float_VAR 157 m12	; ; 157 m12	
+} } 158 m12	
+public public 165 m13	void void 165 m13	setMinTextSize METHOD_NAME 165 m13	( ( 165 m13	float float 165 m13	minTextSize float_VAR 165 m13	) ) 165 m13	
+{ { 166 m13	mMinTextSize float_VAR 166 m13	= = 166 m13	minTextSize float_VAR 166 m13	; ; 166 m13	
+requestLayout METHOD_NAME 167 m13	( ( 167 m13	) ) 167 m13	; ; 167 m13	
+invalidate METHOD_NAME 168 m13	( ( 168 m13	) ) 168 m13	; ; 168 m13	
+} } 169 m13	
+public public 176 m14	boolean boolean 176 m14	getAddEllipsis METHOD_NAME 176 m14	( ( 176 m14	) ) 176 m14	
+{ { 177 m14	return return 177 m14	mAddEllipsis boolean_VAR 177 m14	; ; 177 m14	
+} } 178 m14	
+public public 185 m15	void void 185 m15	setAddEllipsis METHOD_NAME 185 m15	( ( 185 m15	boolean boolean 185 m15	addEllipsis boolean_VAR 185 m15	) ) 185 m15	
+{ { 186 m15	mAddEllipsis boolean_VAR 186 m15	= = 186 m15	addEllipsis boolean_VAR 186 m15	; ; 186 m15	
+} } 187 m15	
+public public 192 m16	void void 192 m16	resetTextSize METHOD_NAME 192 m16	( ( 192 m16	) ) 192 m16	
+{ { 193 m16	if if 193 m16	( ( 193 m16	mTextSize float_VAR 193 m16	> > 193 m16	NUMBER NUMBER 193 m16	) ) 193 m16	
+{ { 194 m16	super super 194 m16	. . 194 m16	setTextSize METHOD_NAME 194 m16	( ( 194 m16	TypedValue UNIDENTIFIED_TYPE_VAR 194 m16	. . 194 m16	COMPLEX_UNIT_PX UNIDENTIFIED_TYPE_VAR 194 m16	, , 194 m16	mTextSize float_VAR 194 m16	) ) 194 m16	; ; 194 m16	
+mMaxTextSize float_VAR 195 m16	= = 195 m16	mTextSize float_VAR 195 m16	; ; 195 m16	
+} } 196 m16	
+} } 197 m16	
+@ @ 202 m17	Override java.lang.Override_VAR 202 m17	
+protected protected 203 m17	void void 203 m17	onLayout METHOD_NAME 203 m17	( ( 203 m17	boolean boolean 203 m17	changed boolean_VAR 203 m17	, , 203 m17	int int 203 m17	left int_VAR 203 m17	, , 203 m17	int int 203 m17	top int_VAR 203 m17	, , 203 m17	int int 203 m17	right int_VAR 203 m17	, , 203 m17	int int 203 m17	bottom int_VAR 203 m17	) ) 203 m17	
+{ { 204 m17	if if 204 m17	( ( 204 m17	changed boolean_VAR 204 m17	| | 204 m17	| | 204 m17	mNeedsResize boolean_VAR 204 m17	) ) 204 m17	
+{ { 205 m17	int int 205 m17	widthLimit int_VAR 205 m17	= = 205 m17	( ( 205 m17	right int_VAR 205 m17	- - 205 m17	left int_VAR 205 m17	) ) 205 m17	- - 205 m17	getCompoundPaddingLeft METHOD_NAME 205 m17	( ( 205 m17	) ) 205 m17	- - 205 m17	getCompoundPaddingRight METHOD_NAME 205 m17	( ( 205 m17	) ) 205 m17	; ; 205 m17	
+int int 206 m17	heightLimit int_VAR 206 m17	= = 206 m17	( ( 206 m17	bottom int_VAR 206 m17	- - 206 m17	top int_VAR 206 m17	) ) 206 m17	- - 206 m17	getCompoundPaddingBottom METHOD_NAME 206 m17	( ( 206 m17	) ) 206 m17	- - 206 m17	getCompoundPaddingTop METHOD_NAME 206 m17	( ( 206 m17	) ) 206 m17	; ; 206 m17	
+resizeText METHOD_NAME 207 m17	( ( 207 m17	widthLimit int_VAR 207 m17	, , 207 m17	heightLimit int_VAR 207 m17	) ) 207 m17	; ; 207 m17	
+} } 208 m17	
+super super 209 m17	. . 209 m17	onLayout METHOD_NAME 209 m17	( ( 209 m17	changed boolean_VAR 209 m17	, , 209 m17	left int_VAR 209 m17	, , 209 m17	top int_VAR 209 m17	, , 209 m17	right int_VAR 209 m17	, , 209 m17	bottom int_VAR 209 m17	) ) 209 m17	; ; 209 m17	
+} } 210 m17	
+public public 215 m18	void void 215 m18	resizeText METHOD_NAME 215 m18	( ( 215 m18	) ) 215 m18	
+{ { 217 m18	int int 217 m18	heightLimit int_VAR 217 m18	= = 217 m18	getHeight METHOD_NAME 217 m18	( ( 217 m18	) ) 217 m18	- - 217 m18	getPaddingBottom METHOD_NAME 217 m18	( ( 217 m18	) ) 217 m18	- - 217 m18	getPaddingTop METHOD_NAME 217 m18	( ( 217 m18	) ) 217 m18	; ; 217 m18	
+int int 218 m18	widthLimit int_VAR 218 m18	= = 218 m18	getWidth METHOD_NAME 218 m18	( ( 218 m18	) ) 218 m18	- - 218 m18	getPaddingLeft METHOD_NAME 218 m18	( ( 218 m18	) ) 218 m18	- - 218 m18	getPaddingRight METHOD_NAME 218 m18	( ( 218 m18	) ) 218 m18	; ; 218 m18	
+resizeText METHOD_NAME 219 m18	( ( 219 m18	widthLimit int_VAR 219 m18	, , 219 m18	heightLimit int_VAR 219 m18	) ) 219 m18	; ; 219 m18	
+} } 220 m18	
+public public 228 m19	void void 228 m19	resizeText METHOD_NAME 228 m19	( ( 228 m19	int int 228 m19	width int_VAR 228 m19	, , 228 m19	int int 228 m19	height int_VAR 228 m19	) ) 228 m19	
+{ { 229 m19	CharSequence java.lang.CharSequence_VAR 229 m19	text java.lang.CharSequence_VAR 229 m19	= = 229 m19	getText METHOD_NAME 229 m19	( ( 229 m19	) ) 229 m19	; ; 229 m19	
+if if 231 m19	( ( 231 m19	text java.lang.CharSequence_VAR 231 m19	= = 231 m19	= = 231 m19	null null 231 m19	| | 231 m19	| | 231 m19	text java.lang.CharSequence_VAR 231 m19	. . 231 m19	length METHOD_NAME 231 m19	( ( 231 m19	) ) 231 m19	= = 231 m19	= = 231 m19	NUMBER NUMBER 231 m19	| | 231 m19	| | 231 m19	height int_VAR 231 m19	< < 231 m19	= = 231 m19	NUMBER NUMBER 231 m19	| | 231 m19	| | 231 m19	width int_VAR 231 m19	< < 231 m19	= = 231 m19	NUMBER NUMBER 231 m19	| | 231 m19	| | 231 m19	mTextSize float_VAR 231 m19	= = 231 m19	= = 231 m19	NUMBER NUMBER 231 m19	) ) 231 m19	
+{ { 232 m19	return return 232 m19	; ; 232 m19	
+} } 233 m19	
+TextPaint TextPaint 236 m19	textPaint com.stevenschoen.putionew.TextPaint_VAR 236 m19	= = 236 m19	getPaint METHOD_NAME 236 m19	( ( 236 m19	) ) 236 m19	; ; 236 m19	
+float float 239 m19	oldTextSize float_VAR 239 m19	= = 239 m19	textPaint com.stevenschoen.putionew.TextPaint_VAR 239 m19	. . 239 m19	getTextSize METHOD_NAME 239 m19	( ( 239 m19	) ) 239 m19	; ; 239 m19	
+float float 241 m19	targetTextSize float_VAR 241 m19	= = 241 m19	mMaxTextSize float_VAR 241 m19	> > 241 m19	NUMBER NUMBER 241 m19	? ? 241 m19	Math java.lang.Math_VAR 241 m19	. . 241 m19	min METHOD_NAME 241 m19	( ( 241 m19	mTextSize float_VAR 241 m19	, , 241 m19	mMaxTextSize float_VAR 241 m19	) ) 241 m19	: : 241 m19	mTextSize float_VAR 241 m19	; ; 241 m19	
+int int 244 m19	textHeight int_VAR 244 m19	= = 244 m19	getTextHeight METHOD_NAME 244 m19	( ( 244 m19	text java.lang.CharSequence_VAR 244 m19	, , 244 m19	textPaint com.stevenschoen.putionew.TextPaint_VAR 244 m19	, , 244 m19	width int_VAR 244 m19	, , 244 m19	targetTextSize float_VAR 244 m19	) ) 244 m19	; ; 244 m19	
+while while 247 m19	( ( 247 m19	textHeight int_VAR 247 m19	> > 247 m19	height int_VAR 247 m19	& & 247 m19	& & 247 m19	targetTextSize float_VAR 247 m19	> > 247 m19	mMinTextSize float_VAR 247 m19	) ) 247 m19	
+{ { 248 m19	targetTextSize float_VAR 248 m19	= = 248 m19	Math java.lang.Math_VAR 248 m19	. . 248 m19	max METHOD_NAME 248 m19	( ( 248 m19	targetTextSize float_VAR 248 m19	- - 248 m19	NUMBER NUMBER 248 m19	, , 248 m19	mMinTextSize float_VAR 248 m19	) ) 248 m19	; ; 248 m19	
+textHeight int_VAR 249 m19	= = 249 m19	getTextHeight METHOD_NAME 249 m19	( ( 249 m19	text java.lang.CharSequence_VAR 249 m19	, , 249 m19	textPaint com.stevenschoen.putionew.TextPaint_VAR 249 m19	, , 249 m19	width int_VAR 249 m19	, , 249 m19	targetTextSize float_VAR 249 m19	) ) 249 m19	; ; 249 m19	
+} } 250 m19	
+if if 253 m19	( ( 253 m19	mAddEllipsis boolean_VAR 253 m19	& & 253 m19	& & 253 m19	targetTextSize float_VAR 253 m19	= = 253 m19	= = 253 m19	mMinTextSize float_VAR 253 m19	& & 253 m19	& & 253 m19	textHeight int_VAR 253 m19	> > 253 m19	height int_VAR 253 m19	) ) 253 m19	
+{ { 256 m19	TextPaint TextPaint 256 m19	paint com.stevenschoen.putionew.TextPaint_VAR 256 m19	= = 256 m19	new new 256 m19	TextPaint METHOD_NAME 256 m19	( ( 256 m19	textPaint com.stevenschoen.putionew.TextPaint_VAR 256 m19	) ) 256 m19	; ; 256 m19	
+StaticLayout StaticLayout 258 m19	layout com.stevenschoen.putionew.StaticLayout_VAR 258 m19	= = 258 m19	new new 258 m19	StaticLayout METHOD_NAME 258 m19	( ( 258 m19	text java.lang.CharSequence_VAR 258 m19	, , 258 m19	paint com.stevenschoen.putionew.TextPaint_VAR 258 m19	, , 258 m19	width int_VAR 258 m19	, , 258 m19	Alignment UNIDENTIFIED_TYPE_VAR 258 m19	. . 258 m19	ALIGN_NORMAL UNIDENTIFIED_TYPE_VAR 258 m19	, , 258 m19	mSpacingMult float_VAR 258 m19	, , 258 m19	mSpacingAdd float_VAR 258 m19	, , 258 m19	false false 258 m19	) ) 258 m19	; ; 258 m19	
+if if 260 m19	( ( 260 m19	layout com.stevenschoen.putionew.StaticLayout_VAR 260 m19	. . 260 m19	getLineCount METHOD_NAME 260 m19	( ( 260 m19	) ) 260 m19	> > 260 m19	NUMBER NUMBER 260 m19	) ) 260 m19	
+{ { 263 m19	int int 263 m19	lastLine int_VAR 263 m19	= = 263 m19	layout com.stevenschoen.putionew.StaticLayout_VAR 263 m19	. . 263 m19	getLineForVertical METHOD_NAME 263 m19	( ( 263 m19	height int_VAR 263 m19	) ) 263 m19	- - 263 m19	NUMBER NUMBER 263 m19	; ; 263 m19	
+if if 265 m19	( ( 265 m19	lastLine int_VAR 265 m19	< < 265 m19	NUMBER NUMBER 265 m19	) ) 265 m19	
+{ { 266 m19	setText METHOD_NAME 266 m19	( ( 266 m19	STRING STRING 266 m19	) ) 266 m19	; ; 266 m19	
+} } 267 m19	
+{ { 270 m19	int int 270 m19	start int_VAR 270 m19	= = 270 m19	layout com.stevenschoen.putionew.StaticLayout_VAR 270 m19	. . 270 m19	getLineStart METHOD_NAME 270 m19	( ( 270 m19	lastLine int_VAR 270 m19	) ) 270 m19	; ; 270 m19	
+else else 271 m19	int int 271 m19	end int_VAR 271 m19	= = 271 m19	layout com.stevenschoen.putionew.StaticLayout_VAR 271 m19	. . 271 m19	getLineEnd METHOD_NAME 271 m19	( ( 271 m19	lastLine int_VAR 271 m19	) ) 271 m19	; ; 271 m19	
+float float 272 m19	lineWidth float_VAR 272 m19	= = 272 m19	layout com.stevenschoen.putionew.StaticLayout_VAR 272 m19	. . 272 m19	getLineWidth METHOD_NAME 272 m19	( ( 272 m19	lastLine int_VAR 272 m19	) ) 272 m19	; ; 272 m19	
+float float 273 m19	ellipseWidth float_VAR 273 m19	= = 273 m19	textPaint com.stevenschoen.putionew.TextPaint_VAR 273 m19	. . 273 m19	measureText METHOD_NAME 273 m19	( ( 273 m19	mEllipsis java.lang.String_VAR 273 m19	) ) 273 m19	; ; 273 m19	
+while while 276 m19	( ( 276 m19	width int_VAR 276 m19	< < 276 m19	lineWidth float_VAR 276 m19	+ + 276 m19	ellipseWidth float_VAR 276 m19	) ) 276 m19	
+{ { 277 m19	lineWidth float_VAR 277 m19	= = 277 m19	textPaint com.stevenschoen.putionew.TextPaint_VAR 277 m19	. . 277 m19	measureText METHOD_NAME 277 m19	( ( 277 m19	text java.lang.CharSequence_VAR 277 m19	. . 277 m19	subSequence METHOD_NAME 277 m19	( ( 277 m19	start int_VAR 277 m19	, , 277 m19	- - 277 m19	- - 277 m19	end int_VAR 277 m19	+ + 277 m19	NUMBER NUMBER 277 m19	) ) 277 m19	. . 277 m19	toString METHOD_NAME 277 m19	( ( 277 m19	) ) 277 m19	) ) 277 m19	; ; 277 m19	
+} } 278 m19	
+setText METHOD_NAME 279 m19	( ( 279 m19	text java.lang.CharSequence_VAR 279 m19	. . 279 m19	subSequence METHOD_NAME 279 m19	( ( 279 m19	NUMBER NUMBER 279 m19	, , 279 m19	end int_VAR 279 m19	) ) 279 m19	+ + 279 m19	mEllipsis java.lang.String_VAR 279 m19	) ) 279 m19	; ; 279 m19	
+} } 280 m19	
+} } 281 m19	
+} } 282 m19	
+setTextSize METHOD_NAME 286 m19	( ( 286 m19	TypedValue UNIDENTIFIED_TYPE_VAR 286 m19	. . 286 m19	COMPLEX_UNIT_PX UNIDENTIFIED_TYPE_VAR 286 m19	, , 286 m19	targetTextSize float_VAR 286 m19	) ) 286 m19	; ; 286 m19	
+setLineSpacing METHOD_NAME 287 m19	( ( 287 m19	mSpacingAdd float_VAR 287 m19	, , 287 m19	mSpacingMult float_VAR 287 m19	) ) 287 m19	; ; 287 m19	
+if if 290 m19	( ( 290 m19	mTextResizeListener com.stevenschoen.putionew.AutoResizeTextView.OnTextResizeListener_VAR 290 m19	! ! 290 m19	= = 290 m19	null null 290 m19	) ) 290 m19	
+{ { 291 m19	mTextResizeListener com.stevenschoen.putionew.AutoResizeTextView.OnTextResizeListener_VAR 291 m19	. . 291 m19	onTextResize METHOD_NAME 291 m19	( ( 291 m19	this this 291 m19	, , 291 m19	oldTextSize float_VAR 291 m19	, , 291 m19	targetTextSize float_VAR 291 m19	) ) 291 m19	; ; 291 m19	
+} } 292 m19	
+mNeedsResize boolean_VAR 295 m19	= = 295 m19	false false 295 m19	; ; 295 m19	
+} } 296 m19	
+private private 299 m20	int int 299 m20	getTextHeight METHOD_NAME 299 m20	( ( 299 m20	CharSequence java.lang.CharSequence_VAR 299 m20	source java.lang.CharSequence_VAR 299 m20	, , 299 m20	TextPaint TextPaint 299 m20	paint com.stevenschoen.putionew.TextPaint_VAR 299 m20	, , 299 m20	int int 299 m20	width int_VAR 299 m20	, , 299 m20	float float 299 m20	textSize float_VAR 299 m20	) ) 299 m20	
+{ { 303 m20	TextPaint TextPaint 303 m20	paintCopy com.stevenschoen.putionew.TextPaint_VAR 303 m20	= = 303 m20	new new 303 m20	TextPaint METHOD_NAME 303 m20	( ( 303 m20	paint com.stevenschoen.putionew.TextPaint_VAR 303 m20	) ) 303 m20	; ; 303 m20	
+paintCopy com.stevenschoen.putionew.TextPaint_VAR 305 m20	. . 305 m20	setTextSize METHOD_NAME 305 m20	( ( 305 m20	textSize float_VAR 305 m20	) ) 305 m20	; ; 305 m20	
+StaticLayout StaticLayout 307 m20	layout com.stevenschoen.putionew.StaticLayout_VAR 307 m20	= = 307 m20	new new 307 m20	StaticLayout METHOD_NAME 307 m20	( ( 307 m20	source java.lang.CharSequence_VAR 307 m20	, , 307 m20	paintCopy com.stevenschoen.putionew.TextPaint_VAR 307 m20	, , 307 m20	width int_VAR 307 m20	, , 307 m20	Alignment UNIDENTIFIED_TYPE_VAR 307 m20	. . 307 m20	ALIGN_NORMAL UNIDENTIFIED_TYPE_VAR 307 m20	, , 307 m20	mSpacingMult float_VAR 307 m20	, , 307 m20	mSpacingAdd float_VAR 307 m20	, , 307 m20	true true 307 m20	) ) 307 m20	; ; 307 m20	
+return return 308 m20	layout com.stevenschoen.putionew.StaticLayout_VAR 308 m20	. . 308 m20	getHeight METHOD_NAME 308 m20	( ( 308 m20	) ) 308 m20	; ; 308 m20	
+} } 309 m20	
+public public 312 NULL	interface interface 312 NULL	OnTextResizeListener com.stevenschoen.putionew.AutoResizeTextView.OnTextResizeListener_VAR 312 NULL	
+{ { 313 NULL	public public 313 m21	void void 313 m21	onTextResize METHOD_NAME 313 m21	( ( 313 m21	TextView TextView 313 m21	textView com.stevenschoen.putionew.TextView_VAR 313 m21	, , 313 m21	float float 313 m21	oldSize float_VAR 313 m21	, , 313 m21	float float 313 m21	newSize float_VAR 313 m21	) ) 313 m21	; ; 313 m21	
+} } 314 NULL	
+} } 315 NULL	
