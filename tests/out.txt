@@ -1,2 +1,0 @@
-<METHOD_START> public METHOD_NAME ( ) { this . int_VAR = NUMBER ; }  <METHOD_END>
-<METHOD_START> public void METHOD_NAME ( java.lang.String [] java.lang.String[]_VAR ) { java.lang.String java.lang.String_VAR ; double double_VAR = NUMBER ; HelloWorld HelloWorld_VAR = new METHOD_NAME ( ) ; double double_VAR = NUMBER ; if( HelloWorld_VAR . int_VAR < NUMBER ) { for( int int_VAR = NUMBER ; int_VAR < NUMBER ; int_VAR ++ ) { double_VAR = double_VAR + NUMBER ; java.lang.String_VAR = STRING ; java.lang.String_VAR = java.lang.String_VAR + double_VAR ; } } }  <METHOD_END>

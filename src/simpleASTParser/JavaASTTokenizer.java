@@ -45,6 +45,8 @@ public class JavaASTTokenizer extends ASTVisitor{
 	private static final String[] PUNCTUATIONS = {"~", "`", "!", "@", "#", "$", "%", "^", "&", "*", "(", ")", "-", "+", "=",
 			"{", "}", "|", "\"", "'", ";", ":", "<", ">", ",", ".", "?", "/"};
 	
+	private List<List<Token>> methodTokenList;
+	
 	public JavaASTTokenizer(String inputJavaFilePath, String outputFilePath) throws FileNotFoundException{
 		
 		this.filePath = inputJavaFilePath;
@@ -56,6 +58,7 @@ public class JavaASTTokenizer extends ASTVisitor{
 		this.documentText = fileString;
 		//System.out.println(this.documentText);
 		sequenceList = new ArrayList<>();
+		methodTokenList = new ArrayList<>();
 		this.outputFile = outputFilePath;
 		scanner.close();
 	}
@@ -63,9 +66,9 @@ public class JavaASTTokenizer extends ASTVisitor{
 	
 	public boolean visit(MethodDeclaration node){
 		//System.out.println(node);
-//		String text = node.toString();
-//		List <Token> tokenStream = traverse(documentText , node);
-//		sequenceList.add(tokenStream);
+		String text = node.toString();
+		List <Token> tokenStream = traverse(documentText , node);
+		methodTokenList.add(tokenStream);
 		return true;
 	}
 	
@@ -98,7 +101,8 @@ public class JavaASTTokenizer extends ASTVisitor{
 
 	private static final int[] ignore = { ASTNode.JAVADOC};
 	@SuppressWarnings("rawtypes")
-	private List<Token> traverse(String document, ASTNode node, int depth, int offset, String methodName) throws IllegalArgumentException {
+	private List<Token> traverse(String document, ASTNode node, int depth, int offset, String methodName) 
+			throws IllegalArgumentException {
 		String name = null;
 		if(node.getNodeType() == ASTNode.METHOD_DECLARATION){
 			MethodDeclaration mdNode = (MethodDeclaration) node;
@@ -165,17 +169,6 @@ public class JavaASTTokenizer extends ASTVisitor{
 					}
 				}
 			}
-			/* else if (child != null) {
-				String childValue = child.toString().trim();
-				if (childValue.matches("true|false") && node.getNodeType() != 9) {
-					if (curr.toString().startsWith("SimpleProperty[org.eclipse.jdt.core.dom.WildcardType.")) {
-						childValue = "?";
-					} else {
-						continue;
-					}
-				}
-				else if (childValue.matches("[0-9]+") && node.getNodeType() != 34) continue;
-			}*/
 		}
 		if (pos < end) {
 			String intermediate = document.substring(pos, end);
@@ -313,11 +306,21 @@ public class JavaASTTokenizer extends ASTVisitor{
 		for (int i : ignore) if (i == nodeType) return true;
 		return false;
 	}
+	
+//	public 
 
-
-	public List<Map<Integer, List<ASTToken>>> postProcess(){
+	public List<Map<Integer, List<ASTToken>>> postProcess(boolean methodOnly){
 		List<Map<Integer, List<ASTToken>>> returns = new ArrayList<Map<Integer,List<ASTToken>>>();
-		for(List<Token> sequence : sequenceList){
+		int count = 0;
+		List<List<Token>> intendedList = null;
+		if(methodOnly) {
+			intendedList = methodTokenList;
+		}
+		else {
+			intendedList = sequenceList;
+		}
+		for(List<Token> sequence : intendedList){
+			count++;
 			int tokenLength = sequence.size();
 			Token []tokenList = new ASTToken[tokenLength];
 			tokenList = sequence.toArray(tokenList);
@@ -344,22 +347,33 @@ public class JavaASTTokenizer extends ASTVisitor{
 				}
 			}
 			int lastLine = ((ASTToken)tokenList[tokenList.length - 1]).getLineNumber();
-
-			Map<Integer, List<ASTToken>> map = new TreeMap<Integer, List<ASTToken>>();
-			for(Token token : tokenList){
-				ASTToken tok = (ASTToken) token;
-				int ln = tok.getLineNumber();
-				List<ASTToken> tokens = null; 
-				if(map.containsKey(ln)){
-					tokens = map.get(ln);
+			
+			if(methodOnly) {
+				Map<Integer, List<ASTToken>> map = new TreeMap<Integer, List<ASTToken>>();
+				List<ASTToken> list = new ArrayList<>();
+				for(Token tok : sequence) {
+					list.add((ASTToken)tok);
 				}
-				if(tokens == null){
-					tokens = new ArrayList<ASTToken>();
-				}
-				tokens.add(tok);
-				map.put(ln, tokens);
+				map.put(count, list);
+				returns.add(map);
 			}
-			returns.add(map);
+			else {
+				Map<Integer, List<ASTToken>> map = new TreeMap<Integer, List<ASTToken>>();
+				for(Token token : tokenList){
+					ASTToken tok = (ASTToken) token;
+					int ln = tok.getLineNumber();
+					List<ASTToken> tokens = null; 
+					if(map.containsKey(ln)){
+						tokens = map.get(ln);
+					}
+					if(tokens == null){
+						tokens = new ArrayList<ASTToken>();
+					}
+					tokens.add(tok);
+					map.put(ln, tokens);
+				}
+				returns.add(map);
+			}
 		}
 		return returns;
 	}

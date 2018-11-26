@@ -11,33 +11,28 @@ import java.util.stream.Stream;
 public class Test {
 	public static int testStaticInt = 10;
 	public static void main(String args[]) throws IOException {
-		int count = 0;
-		//try (BufferedReader br = new BufferedReader(new FileReader("tests/in.txt"))) {
-		   // String line;
-		   // while ((line = br.readLine()) != null) {
-				if(args.length < 2) {
-						System.out.println("2 argument needed, 1. input java file, 2. output file");
-						System.exit(0);
-				}
-		    		String infile = args[0];
-				String outFileName = args[1];
+			if(args.length < 2) {
+					System.out.println("java -jar Tokenizer.jat <input file path> <output path> [method]");
+					System.exit(0);
+			}
+		    String infile = args[0];
+			String outFileName = args[1];
+			boolean methodOnly = false;
+			if(args.length == 3) {
+				methodOnly = true;
+			}
+			PrintStream outStream = new PrintStream(new File(outFileName));
 				
-				PrintStream outStream = new PrintStream(new File(outFileName));
+			JavaASTTokenizer tokenizer = new JavaASTTokenizer(infile, outFileName);
+			tokenizer.tokenize();
+			List<Map<Integer, List<ASTToken>>> processedTokens = tokenizer.postProcess(methodOnly);
 				
-				JavaASTTokenizer tokenizer = new JavaASTTokenizer(infile, outFileName);
-				tokenizer.tokenize();
-				List<Map<Integer, List<ASTToken>>> processedTokens = tokenizer.postProcess();
-				
-				for(Map<Integer, List<ASTToken>> fileTokens : processedTokens){
-					writeDataToFile(fileTokens, outStream);
-				}
-				
-				outStream.close();
-		    //}
-		//} 
-		
+			for(Map<Integer, List<ASTToken>> fileTokens : processedTokens){
+				writeDataToFile(fileTokens, outStream);
+			}			
+			outStream.close();
 	 }
-
+	
 	private static void writeDataToFile(Map<Integer, List<ASTToken>> fileTokens, PrintStream stream) {
 		Set<Integer> lineNumbers = fileTokens.keySet();
 		for(Integer ln : lineNumbers){
