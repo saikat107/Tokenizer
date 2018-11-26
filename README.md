@@ -1,7 +1,7 @@
 # Running Instruction
 
 ``` bash
-java -jar Parser.jar <input java file path> <output file path>
+java -jar Parser.jar <input java file path> <output file path> [method]
 ```
 
 # output specifiers
